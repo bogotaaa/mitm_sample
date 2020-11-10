@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"start": "node src/index.js"
+	},
+	"devDependencies": {
+		"find-process": "^1.4.4",
+		"moment": "^2.29.1"
+	}
+}
