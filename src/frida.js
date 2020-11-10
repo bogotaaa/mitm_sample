@@ -1,15 +1,21 @@
-const find = require('find-process');
 const moment = require('moment');
-const { exec } = require('child_process');
+const find = require('find-process');
+const exec = require('child_process').exec;
 
-module.exports = {
-    start: async () => {
+class Frida {
+    
+    constructor() {
+        this.started = false;
+    }
+
+    async start() {
         return new Promise(async resolve => {
             console.log(`[${moment().format('HH:mm:ss')}] Checking Dofus...`);
             let d2Process = await new Promise(resolve => find('name', 'Dofus', true).then(l => resolve(l.length ? l[0] : null)));
             if (!d2Process) {
                 console.log(`[${moment().format('HH:mm:ss')}] Dofus is not running :/\n`);
-                resolve(false);
+                this.started = false;
+                resolve();
                 return;
             }
             console.log(`[${moment().format('HH:mm:ss')}] Dofus is running :)`);
@@ -27,7 +33,10 @@ module.exports = {
             });
             await new Promise(resolve => setTimeout(resolve, 2000));
             console.log(`[${moment().format('HH:mm:ss')}] Ready...`);
-            resolve(true);
+            this.started = true;
+            resolve();
         })
     }
 }
+
+module.exports = Frida;
