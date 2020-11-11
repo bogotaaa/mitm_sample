@@ -4,6 +4,10 @@
 
     pip install frida frida-tools
 
+    brew install python3
+    
+    python3 -m pip install frida frida-tools
+
 ## Dépendencies Installation
 
     yarn

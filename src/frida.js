@@ -1,6 +1,7 @@
 const moment = require('moment');
 const find = require('find-process');
 const exec = require('child_process').exec;
+const os = require('os');
 
 class Frida {
     
@@ -20,7 +21,7 @@ class Frida {
             }
             console.log(`[${moment().format('HH:mm:ss')}] Dofus is running :)`);
             console.log(`[${moment().format('HH:mm:ss')}] Starting Injection...`);
-            await exec('frida -n dofus.exe -l src/frida_script.js', (error, stdout, stderr) => {
+            await exec(`frida -n ${os.platform() === 'win32' ? 'dofus.exe' : 'dofus'} -l src/frida_script.js`, (error, stdout, stderr) => {
                 if (error) {
                     console.log(`error: ${error.message}`);
                     return;
