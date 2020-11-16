@@ -1,6 +1,7 @@
 {
 	"scripts": {
-		"start": "node src/index.js"
+		"start": "node src/index.js",
+		"sb": "node src/sandbox.js"
 	},
 	"devDependencies": {
 		"find-process": "^1.4.4",
